@@ -65,7 +65,19 @@ file "browser/json-normalizer.js" => browser_dependencies do
   end
 end
 
-task :dist => [:install_transpiler, "browser/json-normalizer.js"]
+file "browser/json-normalizer.all.js" => browser_dependencies do
+  output = []
+
+  amd_modules.each do |name, filename|
+    output << named_module(name, filename)
+  end
+
+  open("browser/json-normalizer.all.js", "w") do |file|
+    file.puts output.join("\n")
+  end
+end
+
+task :dist => [:install_transpiler, "browser/json-normalizer.js", "browser/json-normalizer.all.js"]
 
 desc "compile htmlbars"
 task :default => :dist

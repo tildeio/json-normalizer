@@ -16,18 +16,16 @@ define(
     }
 
 
-    var __export1__ = function camelizeKeys(object) {
+    export function camelizeKeys(object) {
       return map(object, function(hash, key, value) {
         hash[camelize(key)] = value;
       });
     }
 
-    var __export2__ = function decamelizeKeys(object) {
+    export function decamelizeKeys(object) {
       return map(object, function(hash, key, value) {
         hash[decamelize(key)] = value;
       });
     }
     __exports__.map = map;
-    __exports__.camelizeKeys = __export1__;
-    __exports__.decamelizeKeys = __export2__;
   });
