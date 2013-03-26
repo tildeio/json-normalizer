@@ -49,18 +49,20 @@ define("json-normalizer/hash-utils",
     }
 
 
-    export function camelizeKeys(object) {
+    var __export1__ = function camelizeKeys(object) {
       return map(object, function(hash, key, value) {
         hash[camelize(key)] = value;
       });
     }
 
-    export function decamelizeKeys(object) {
+    var __export2__ = function decamelizeKeys(object) {
       return map(object, function(hash, key, value) {
         hash[decamelize(key)] = value;
       });
     }
     __exports__.map = map;
+    __exports__.camelizeKeys = __export1__;
+    __exports__.decamelizeKeys = __export2__;
   });
 
 define("json-normalizer/processor",
@@ -86,12 +88,12 @@ define("json-normalizer/processor",
   });
 
 define("json-normalizer/string-utils",
-  [],
-  function() {
+  ["exports"],
+  function(__exports__) {
     "use strict";
     var STRING_CAMELIZE_REGEXP = (/(\-|_|\.|\s)+(.)?/g);
 
-    export function camelize(str) {
+    var __export1__ = function camelize(str) {
       return str.replace(STRING_CAMELIZE_REGEXP, function(match, separator, chr) {
         return chr ? chr.toUpperCase() : '';
       }).replace(/^([A-Z])/, function(match, separator, chr) {
@@ -101,9 +103,11 @@ define("json-normalizer/string-utils",
 
     var STRING_DECAMELIZE_REGEXP = (/([a-z])([A-Z])/g);
 
-    export function decamelize(str) {
+    var __export2__ = function decamelize(str) {
       return str.replace(STRING_DECAMELIZE_REGEXP, '$1_$2').toLowerCase();
     }
+    __exports__.camelize = __export1__;
+    __exports__.decamelize = __export2__;
   });
 
 define("json-normalizer",
